@@ -18,18 +18,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// SzavakController routes
 Route::get('/api/szavak', [SzavakController::class, 'index']);
-Route::get('/api/szavak/id', [SzavakController::class, 'show']);
-Route::post('/api/szavak', [SzavakController::class, 'store']);
-Route::put('/api/szavak//id', [SzavakController::class, 'update']);
-Route::delete('/api/szavak/delete/{id}', [SzavakController::class, 'destroy']);
 Route::get('/api/szavak/new', [SzavakController::class, 'newview']);
 Route::get('/api/szavak/edit/{id}', [SzavakController::class, 'editview']);
 Route::get('/api/szavak/list', [SzavakController::class, 'listview']);
+Route::delete('/api/szavak/delete/{id}', [SzavakController::class, 'destroy'])->name('szavak.delete');
+Route::delete('/api/szavak/{id}/delete', [SzavakController::class, 'deleteView'])->name('szavak.delete');
+Route::get('/api/szavak/{id}', [SzavakController::class, 'show']); 
+Route::post('/api/szavak', [SzavakController::class, 'store']);
+Route::put('/api/szavak/{id}', [SzavakController::class, 'update']); 
+
+// KategoriaController routes
 Route::get('/api/kategoriak', [KategoriaController::class, 'index']);
-Route::get('/api/kategoria/{{$kategoria->id}}', [KategoriaController::class, 'show']);
-Route::get('/api/kategoria', [KategoriaController::class, 'index']);
-Route::get('/api/kategoria/list', [KategoriaController::class, 'listview']);
-Route::get('/api/kategoria/edit/{id}', [KategoriaController::class, 'editview']);
 Route::get('/api/kategoria/new', [KategoriaController::class, 'newview']);
+Route::get('/api/kategoria/edit/{id}', [KategoriaController::class, 'editview']);
+Route::get('/api/kategoria/list', [KategoriaController::class, 'listview']);
 Route::delete('/api/kategoria/delete/{id}', [KategoriaController::class, 'destroy']);
+Route::get('/api/kategoria/{id}', [KategoriaController::class, 'show']);
+Route::get('/api/kategoria', [KategoriaController::class, 'index']);
+

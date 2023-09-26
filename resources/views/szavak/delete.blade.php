@@ -1,12 +1,12 @@
-@if($szavak)
+@if($szo)
     <ul>
-        <li>ID: {{ $szavak->id }}</li>
-        <li>Angol: {{ $szavak->Angol }}</li>
-        <li>Magyar: {{ $szavak->Magyar }}</li>
-        <li>TemaID: {{ $szavak->tema_id }}</li>
+        <li>ID: {{ $szo->id }}</li>
+        <li>Angol: {{ $szo->Angol }}</li>
+        <li>Magyar: {{ $szo->Magyar }}</li>
+        <li>TemaID: {{ $szo->tema_id }}</li>
     </ul>
 
-    <form action="{{ route('szavak.delete', ['id' => $szavak->id]) }}" method="POST">
+    <form action="/api/szavak/delete/{{$szo->id}}" method="POST">
         @csrf
         @method('DELETE')
 
@@ -14,5 +14,5 @@
     </form>
 
 @else
-    <p>Szavak not found</p>
+    <p>Szo not found</p>
 @endif

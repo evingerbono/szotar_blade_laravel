@@ -1,8 +1,12 @@
-<form action="/api/szavak/new" method="POST">
+<form action="/api/szavak" method="POST">
     {{csrf_field()}}
 
     <div class="form-group">
-        <input type="text" name="tema_id" placeholder="Tema ID">
+        <select name="temaID" id="temaID">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
     </div>
 
     <div class="form-group">

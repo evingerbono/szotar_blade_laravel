@@ -24,12 +24,12 @@ class SzavakController extends Controller
         $szavak = Szavak::find($id);
     
         if (!$szavak) {
-            return redirect('/szavak/list')->with('error', 'Szavak not found');
+            return redirect('/api/szavak/list')->with('error', 'Szavak not found');
         }
     
         $szavak->delete();
     
-        return redirect('/szavak/list');
+        return redirect('/api/szavak/list');
     }
     
     public function store(Request $request)
@@ -39,7 +39,7 @@ class SzavakController extends Controller
         $kategoria->Angol = $request->Angol;
         $kategoria->Magyar = $request->Magyar;
         $kategoria->save();
-        return redirect('/kategoria/list');
+        return redirect('/api/szavak/list');
     }
     public function update(Request $request, $id)
     {
@@ -48,7 +48,7 @@ class SzavakController extends Controller
         $kategoria->Angol = $request->Angol;
         $kategoria->Magyar = $request->Magyar;
         $kategoria->save();
-        return redirect('/kategoria/list');
+        return redirect('/api/szavak/list');
     }
 
     public function editview($id)
@@ -69,10 +69,10 @@ class SzavakController extends Controller
     }
     public function deleteView($id)
     {
-        $szavak = Szavak::find($id);
+        $szo = Szavak::find($id);
         $kategoria = Kategoria::all();
 
-        return view('szavak.delete', ['szavak' => $szavak, 'kategoria' => $kategoria]);
+        return view('szavak.delete', ['szo' => $szo, 'kategoria' => $kategoria]);
     }
 
 

@@ -1,4 +1,4 @@
-<form action="/api/szavak/{{szavak->id}}" method="POST">
+<form action="/api/szavak/{{$szavak->id}}" method="POST">
     {{csrf_field()}}
     {{method_field('PUT')}}
 

@@ -1,4 +1,4 @@
-<form action="/szavak/edit/{id}" method="POST">
+<form action="/api/szavak/{{szavak->id}}" method="POST">
     {{csrf_field()}}
     {{method_field('PUT')}}
 
@@ -14,5 +14,5 @@
         <input type="text" name="Magyar" placeholder="Magyar" value="{{ $szavak->Magyar }}">
     </div>
     <br>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <input type="submit" class="btn btn-primary">Save</input>
 </form>

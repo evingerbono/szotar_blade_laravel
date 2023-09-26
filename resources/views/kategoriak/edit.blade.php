@@ -1,4 +1,4 @@
-<form action="/api/kategoria/edit/{id}"  method="POST">
+<form action="/api/kategoria/{{$kategoria->id}}"  method="POST">
     {{csrf_field()}}
     {{method_field('PUT')}}
     <div class="form-group">
@@ -7,6 +7,6 @@
         <input type="text" class="form-control" id="Elnevezes" name="Elnevezes" value="{{ $kategoria->Elnevezes }}" placeholder="Átnevezés">
     </div>
     <br>
-    <button type="submit" class="btn btn-primary">Mentés</button>
+    <input type="submit" class="btn btn-primary">Mentés</input>
 </form>
 

@@ -30,7 +30,7 @@ Route::post('/api/szavak', [SzavakController::class, 'store']);
 Route::put('/api/szavak/{id}', [SzavakController::class, 'update']); 
 Route::get('/api/szavak/list/{kivalasztottId}', [SzavakController::class, 'listKategoria']);
 
-
+Route::post('/api/szavak/szoEllenorzes', [SzavakController::class, 'szoEllenorzes']);
 
 
 // KategoriaController routes

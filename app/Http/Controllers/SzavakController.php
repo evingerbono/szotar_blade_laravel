@@ -22,16 +22,16 @@ class SzavakController extends Controller
     public function destroy($id)
     {
         $szavak = Szavak::find($id);
-    
+
         if (!$szavak) {
             return redirect('/api/szavak/list')->with('error', 'Szavak not found');
         }
-    
+
         $szavak->delete();
-    
+
         return redirect('/api/szavak/list');
     }
-    
+
     public function store(Request $request)
     {
         $kategoria = new Szavak();
@@ -81,14 +81,17 @@ class SzavakController extends Controller
 
         return view('szavak.list', ['szavak' => $szavak, 'kivalaszottKateg' => $kivalasztottKateg]);
     }
-    
-    public function szoEllenorzes(Request $request, $szoId)
-    {
-        $szavak = Szavak::find($szoId);
-        $magyarSzo = $request->input('Magyar');
-        $eredmeny = ($szavak->Magyar == $magyarSzo);
-        return $eredmeny;
-    }
 
-    
+    public function szoEllenorzes(Request $request)
+    {
+        $bekuldottSzavak = $request->input('Magyar');
+        $eredmenyek = [];
+
+        foreach ($bekuldottSzavak as $szoId => $magyarSzo) {
+            $szavak = Szavak::find($szoId);
+            $eredmenyek[$szoId] = ($szavak->Magyar == $magyarSzo);
+        }
+
+        return view('szavak.list', ['szavak' => Szavak::all(), 'eredmenyek' => $eredmenyek]);
+    }
 }

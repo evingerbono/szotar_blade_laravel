@@ -1,26 +1,30 @@
 <div class="tarolo">
-    <table>
-        <tr>
-            <th>Angol</th>
-            <th>Magyar</th>
-            <th>Ellenőrzés</th>
-        </tr>
-        @foreach ($szavak as $szo)
+    <form method="post" action="/api/szavak/szoEllenorzes">
+        @csrf
+        <table>
             <tr>
-                <td>{{$szo->Angol}}</td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" class="magyarSzo" name="Magyar" placeholder="Magyar szó" value="">
-                    </div>
-                </td>
-                <td>
-                    @if ($szo->Magyar == ('.magyarSzo'))
-                        <h1>✅</h1>
-                    @else
-                        <h1>❌</h1>
-                    @endif
-                </td>
+                <th>Angol</th>
+                <th>Magyar</th>
+                <th>Ellenőrzés</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($szavak as $szo)
+                <tr>
+                    <td>{{$szo->Angol}}</td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="magyarSzo" name="Magyar[{{ $szo->id }}]" placeholder="Magyar szó" value="">
+                        </div>
+                    </td>
+                    <td>
+                        @if (isset($eredmenyek[$szo->id]) && $eredmenyek[$szo->id])
+                            <h1>✅</h1>
+                        @else
+                            <h1>❌</h1>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+        <button type="submit">Ellenőrzés</button>
+    </form>
 </div>

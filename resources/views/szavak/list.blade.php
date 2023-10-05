@@ -1,10 +1,26 @@
-@foreach ($szavak as $szavak)
-    <form action="/api/szavak/list" method="GET">
-    {{csrf_field()}}
-    {{method_field('GET')}}
-    <div class="form-group">
-        <p>{{$szavak->Angol}}</p>
-        <p>{{$szavak->Magyar}}</p>
-    </div>
-     </form>
-@endforeach
+<div class="tarolo">
+    <table>
+        <tr>
+            <th>Angol</th>
+            <th>Magyar</th>
+            <th>Ellenőrzés</th>
+        </tr>
+        @foreach ($szavak as $szo)
+            <tr>
+                <td>{{$szo->Angol}}</td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="magyarSzo" name="Magyar" placeholder="Magyar szó" value="">
+                    </div>
+                </td>
+                <td>
+                    @if ($szo->Magyar == ('.magyarSzo'))
+                        <h1>✅</h1>
+                    @else
+                        <h1>❌</h1>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </table>
+</div>

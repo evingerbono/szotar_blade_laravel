@@ -74,6 +74,21 @@ class SzavakController extends Controller
 
         return view('szavak.delete', ['szo' => $szo, 'kategoria' => $kategoria]);
     }
+    public function listKategoria(Request $request, $kivalasztottId)
+    {
+        $kivalasztottKateg = Kategoria::find($kivalasztottId);
+        $szavak = Szavak::where('tema_id', $kivalasztottId)->get();
 
+        return view('szavak.list', ['szavak' => $szavak, 'kivalaszottKateg' => $kivalasztottKateg]);
+    }
+    
+    public function szoEllenorzes(Request $request, $szoId)
+    {
+        $szavak = Szavak::find($szoId);
+        $magyarSzo = $request->input('Magyar');
+        $eredmeny = ($szavak->Magyar == $magyarSzo);
+        return $eredmeny;
+    }
 
+    
 }

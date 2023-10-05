@@ -28,6 +28,10 @@ Route::get('/api/szavak/{id}/delete', [SzavakController::class, 'deleteView'])->
 Route::get('/api/szavak/{id}', [SzavakController::class, 'show']); 
 Route::post('/api/szavak', [SzavakController::class, 'store']);
 Route::put('/api/szavak/{id}', [SzavakController::class, 'update']); 
+Route::get('/api/szavak/list/{kivalasztottId}', [SzavakController::class, 'listKategoria']);
+
+
+
 
 // KategoriaController routes
 Route::get('/api/kategoriak', [KategoriaController::class, 'index']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategoria;
+use App\Models\Szavak;
 
 class KategoriaController extends Controller
 {
@@ -52,6 +53,13 @@ class KategoriaController extends Controller
     public function newView(){
         $kategoria = Kategoria::all(); 
         return view ('kategoriak.new', ['kategoria' => $kategoria]); 
+    }
+    public function listKategoria(Request $request, $kivalasztottId)
+    {
+        $kivalasztottKateg = Kategoria::find($kivalasztottId);
+        $szavak = Szavak::where('tema_id', $kivalasztottId)->get();
+
+        return view('szavak.list', ['szavak' => $szavak, 'kivalaszottKateg' => $kivalasztottKateg]);
     }
 
 

@@ -14,5 +14,5 @@
         <input type="text" name="Magyar" placeholder="Magyar" value="{{ $szavak->Magyar }}">
     </div>
     <br>
-    <input type="submit" class="btn btn-primary">Save</input>
+    <input type="submit" class="btn btn-primary"></input>
 </form>
